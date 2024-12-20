@@ -55,8 +55,8 @@ if ! crontab -l | grep -q "$INSTALL_DIR/borg_backup.sh"; then
 fi
 
 # Create crontab for user to run borg_update.sh every day at 10pm if it does not already exist
-if ! crontab -l | grep -q "$INSTALL_DIR/borg_update.sh"; then
-  (crontab -l ; echo "0 22 * * * $INSTALL_DIR/borg_update.sh") | crontab -
+if ! crontab -l | grep -q "cd $INSTALL_DIR && ./borg_update.sh"; then
+  (crontab -l ; echo "0 22 * * * cd $INSTALL_DIR && ./borg_update.sh") | crontab -
 fi
 
 crontab -l
