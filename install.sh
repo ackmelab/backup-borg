@@ -47,7 +47,7 @@ case $(uname -s) in
     ;;
 esac
 
-git clone git@github.com:ackmelab/backup-borg.git "$INSTALL_DIR"
+test -d "$INSTALL_DIR" ||  git clone git@github.com:ackmelab/backup-borg.git "$INSTALL_DIR"
 
 # Create crontab for user to run borg_backup.sh every day at 11pm if it does not already exist
 if ! crontab -l | grep -q "$INSTALL_DIR/borg_backup.sh"; then
