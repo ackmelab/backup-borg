@@ -7,5 +7,5 @@ command-line with either `curl`, `wget` or another similar tool.
 
 | Method    | Command                                                                                           |
 | :-------- | :------------------------------------------------------------------------------------------------ |
-| **curl**  | `sh -c "$(curl -fsSL https://raw.githubusercontent.com/ackmelab/backup-borg/main/install.sh)"` |
-| **wget**  | `sh -c "$(wget -O- https://raw.githubusercontent.com/ackmelab/backup-borg/main/install.sh)"`   |
+| **curl**  | `sh -c "$(curl -fsSL https://raw.githubusercontent.com/ackmelab/backup-borg/refs/heads/main/install.sh)"` |
+| **wget**  | `sh -c "$(wget -O- https://raw.githubusercontent.com/ackmelab/backup-borg/refs/heads/main/install.sh)"`   |
