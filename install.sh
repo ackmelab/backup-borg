@@ -1,6 +1,6 @@
 #!/bin/sh
 
-SCRIPT_DIR=$(dirname "$(readlink -f "$0")")
+INSTALL_DIR="$HOME/.backup-borg"
 
 case $(uname -s) in
   Linux)
@@ -47,14 +47,16 @@ case $(uname -s) in
     ;;
 esac
 
+git clone https://github.com/backup-borg/backup-borg.git "$INSTALL_DIR"
+
 # Create crontab for user to run borg_backup.sh every day at 11pm if it does not already exist
-if ! crontab -l | grep -q "$SCRIPT_DIR/borg_backup.sh"; then
-  (crontab -l ; echo "0 23 * * * $SCRIPT_DIR/borg_backup.sh") | crontab -
+if ! crontab -l | grep -q "$INSTALL_DIR/borg_backup.sh"; then
+  (crontab -l ; echo "0 23 * * * $INSTALL_DIR/borg_backup.sh") | crontab -
 fi
 
 # Create crontab for user to run borg_update.sh every day at 10pm if it does not already exist
-if ! crontab -l | grep -q "$SCRIPT_DIR/borg_update.sh"; then
-  (crontab -l ; echo "0 22 * * * $SCRIPT_DIR/borg_update.sh") | crontab -
+if ! crontab -l | grep -q "$INSTALL_DIR/borg_update.sh"; then
+  (crontab -l ; echo "0 22 * * * $INSTALL_DIR/borg_update.sh") | crontab -
 fi
 
 crontab -l
