@@ -49,14 +49,14 @@ esac
 
 test -d "$INSTALL_DIR" ||  git clone git@github.com:ackmelab/backup-borg.git "$INSTALL_DIR"
 
-# Create crontab for user to run borg_backup.sh every day at 11pm if it does not already exist
-if ! crontab -l | grep -q "$INSTALL_DIR/borg_backup.sh"; then
-  (crontab -l ; echo "0 23 * * * $INSTALL_DIR/borg_backup.sh") | crontab -
-fi
-
 # Create crontab for user to run borg_update.sh every day at 10pm if it does not already exist
 if ! crontab -l | grep -q "cd $INSTALL_DIR && ./borg_update.sh"; then
   (crontab -l ; echo "0 22 * * * cd $INSTALL_DIR && ./borg_update.sh") | crontab -
+fi
+
+# Create crontab for user to run borg_backup.sh every day at 11pm if it does not already exist
+if ! crontab -l | grep -q "$INSTALL_DIR/borg_backup.sh"; then
+  (crontab -l ; echo "0 23 * * * $INSTALL_DIR/borg_backup.sh") | crontab -
 fi
 
 crontab -l
